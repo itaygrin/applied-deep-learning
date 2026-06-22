@@ -1,8 +1,17 @@
 # Applied Deep Learning
 
-Six self-contained PyTorch projects, each a single Jupyter notebook. They cover training a model
-from scratch, interpreting a pretrained model, optimizing inference, deploying to the edge,
-clustering images with embeddings, and fine-tuning.
+A collection of six self-contained PyTorch projects that work through the applied deep-learning
+lifecycle from end to end: training a model from scratch, interpreting a pretrained one, optimizing
+it for inference, deploying it to the edge, clustering images with embeddings, and fine-tuning.
+
+The aim is to cover the whole path from a trained model to a deployed one, giving the production
+side (export, serving, latency, on-device conversion, evaluation) the same weight as the modeling.
+Each project takes one concrete task all the way through and makes the engineering decisions
+explicit: preprocessing and input contracts, serving and latency, conversion parity, and how
+results are measured, including cases where a technique did not help. Every project is a single
+Jupyter notebook that runs on CPU and records the reasoning behind each step.
+
+Longer conceptual notes for all six projects are collected in [LEARN.md](LEARN.md).
 
 ## Featured project: Photo clustering with CLIP and k-means
 
@@ -85,7 +94,3 @@ when you run the notebooks.
   setup.
 - Model artifacts (`.pt`, `.pth`, `.onnx`, `.mlpackage`) are produced by running the notebooks.
   Each notebook keeps its result cells (metrics, plots, visualizations) inline.
-
-## Notes
-
-[LEARN.md](LEARN.md) collects the key concepts and design decisions behind each project.
