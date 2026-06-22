@@ -15,6 +15,12 @@ correct.
   float16 by default (about half the ONNX size), and that `coremltools` can convert on Linux but only
   runs inference on macOS, so ONNX is used as a parity proxy on non-Apple hardware.
 
+## Requirements
+
+`coremltools` runs on macOS and Linux, not on native Windows. On Windows, run this project under
+WSL (a Linux environment). Conversion works on Linux; running the converted `.mlpackage` for
+inference requires macOS, which is why ONNX is used as a parity proxy on non-Apple hardware.
+
 ## How to run
 
 ```bash
