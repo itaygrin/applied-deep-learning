@@ -16,7 +16,11 @@ high-dimensional space), and the result is rendered as a per-cluster image grid 
 The notebook also covers running this at scale: per-user clustering, FAISS, MiniBatchKMeans, and a
 distributed task queue.
 
-![CLIP and k-means cluster grid](day5-photo-clustering/clusters.jpg)
+<p align="center">
+  <img src="day5-photo-clustering/clusters.jpg" alt="CLIP and k-means cluster grid" width="300">
+</p>
+
+<p align="center"><sub>Each row is one k-means cluster. Full-size version in the <a href="day5-photo-clustering/">project folder</a>.</sub></p>
 
 ## Projects
 
