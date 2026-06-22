@@ -1,4 +1,4 @@
-# Day 3: ONNX export, FastAPI serving, and latency benchmark
+# ONNX export, FastAPI serving, and latency benchmark
 
 Exports a PyTorch model to ONNX, serves it over HTTP with FastAPI, and measures latency.
 
@@ -18,7 +18,7 @@ Exports a PyTorch model to ONNX, serves it over HTTP with FastAPI, and measures 
 pip install -r requirements.txt
 
 # notebook (export + benchmark)
-jupyter notebook day3_onnx_serving.ipynb
+jupyter notebook onnx-serving.ipynb
 
 # serve (after the notebook has produced the .onnx file)
 uvicorn server:app --reload

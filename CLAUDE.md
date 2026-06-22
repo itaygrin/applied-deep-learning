@@ -9,12 +9,12 @@ A hands-on ML/DL engineering portfolio: six self-contained projects spanning tra
 ## Project layout
 
 ```
-day1-mlp-mnist/        # MLP from scratch, MNIST, training loop
-day2-resnet-features/  # ResNet-18 inference + feature map viz
-day3-onnx-serving/     # ONNX export + FastAPI + latency benchmark
-day4-coreml/           # CoreML conversion + parity validation
-day5-photo-clustering/ # CLIP embeddings + k-means album generation
-day6-finetune/         # MobileNet fine-tuning, augmentation, F1
+mlp-mnist/            # MLP from scratch, MNIST, training loop
+resnet-features/      # ResNet-18 inference + feature map viz
+onnx-serving/         # ONNX export + FastAPI + latency benchmark
+coreml/               # CoreML conversion + parity validation
+photo-clustering/     # CLIP embeddings + k-means album generation
+finetune/             # MobileNet fine-tuning, augmentation, F1
 ```
 
 ## Environment

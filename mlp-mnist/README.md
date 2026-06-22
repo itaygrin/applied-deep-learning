@@ -1,4 +1,4 @@
-# Day 1: MLP from scratch on MNIST
+# MLP from scratch on MNIST
 
 A multi-layer perceptron trained on MNIST handwritten digits, implementing the full PyTorch
 training loop directly, without a high-level training wrapper.
@@ -16,7 +16,7 @@ training loop directly, without a high-level training wrapper.
 
 ```bash
 pip install -r requirements.txt
-jupyter notebook day1_mlp_mnist.ipynb
+jupyter notebook mlp-mnist.ipynb
 ```
 
 MNIST downloads to `data/` on first run.

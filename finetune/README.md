@@ -1,4 +1,4 @@
-# Day 6: Transfer learning and fine-tuning MobileNetV2
+# Transfer learning and fine-tuning MobileNetV2
 
 Adapts an ImageNet-pretrained MobileNetV2 to a binary cat versus dog task (Oxford-IIIT Pet),
 comparing two transfer-learning strategies and measuring whether the more aggressive one helps.
@@ -20,7 +20,7 @@ comparing two transfer-learning strategies and measuring whether the more aggres
 
 ```bash
 pip install -r requirements.txt
-jupyter notebook day6-finetune.ipynb
+jupyter notebook finetune.ipynb
 ```
 
 Oxford-IIIT Pet downloads on first run.

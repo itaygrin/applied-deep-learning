@@ -1,4 +1,4 @@
-# Day 2: ResNet-18 inference and feature-map visualization
+# ResNet-18 inference and feature-map visualization
 
 Inference with a pretrained ResNet-18, then a look inside the network at what its convolutional
 layers respond to.
@@ -17,7 +17,7 @@ layers respond to.
 
 ```bash
 pip install -r requirements.txt
-jupyter notebook day2_resnet_features.ipynb
+jupyter notebook resnet-features.ipynb
 ```
 
 A sample photo is included at `data/Amy.jpg`, so the notebook runs without extra setup. The

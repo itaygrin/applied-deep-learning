@@ -1,4 +1,4 @@
-# Day 5: CLIP embeddings and k-means photo clustering
+# CLIP embeddings and k-means photo clustering
 
 Groups an unlabeled set of photos into semantically coherent albums such as beaches, food, people,
 and pets, with no labels.
@@ -18,7 +18,7 @@ and pets, with no labels.
 
 ```bash
 pip install -r requirements.txt
-jupyter notebook day5-clip-clustering.ipynb
+jupyter notebook photo-clustering.ipynb
 ```
 
 Demo images download on first run.

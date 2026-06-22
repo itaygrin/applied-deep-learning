@@ -4,7 +4,7 @@ Concept-level notes accumulated while building the six projects in this portfoli
 
 ---
 
-## Day 1 — MLP on MNIST
+## MLP on MNIST
 
 ### Environment & Tooling
 - **PyTorch** replaces NumPy for ML work — same n-dimensional array math, but tensors can live on GPU and track gradients (needed for backprop). NumPy is still imported for occasional matplotlib compatibility.
@@ -89,10 +89,10 @@ Concept-level notes accumulated while building the six projects in this portfoli
 
 ---
 
-## Day 2 — ResNet-18 Inference + Feature Maps
+## ResNet-18 Inference + Feature Maps
 
 ### Environment & Setup
-- Day 2 is inference only — no training loop, no dataset. Just load pretrained weights and run forward pass.
+- Inference only — no training loop, no dataset. Just load pretrained weights and run forward pass.
 - `torchvision.models` — model hub for classic CV architectures (ResNet, MobileNet, VGG). Same concept as HuggingFace but scoped to vision.
 
 ### Preprocessing & Input Contract
@@ -111,7 +111,7 @@ Concept-level notes accumulated while building the six projects in this portfoli
 ### Multimodal Models (conceptual)
 - Multimodal models (GPT-4, Claude): one encoder per modality (image, text, audio), all output same-shaped vectors, one shared transformer processes everything.
 - Each encoder has its own preprocessing contract. Preprocessing = fulfill that contract, convert raw input to vectors the shared model understands.
-- CLIP (Day 5): explicitly trains image + text embeddings to land in the same region if semantically matched — not automatic, that's the design.
+- CLIP: explicitly trains image + text embeddings to land in the same region if semantically matched — not automatic, that's the design.
 
 ### Loading Pretrained Models
 - `torchvision.models.resnet18(weights=...)` — architecture and weights are decoupled by design. Architecture is the blueprint (layer structure). Weights are what the model knows (learned numbers).
@@ -170,7 +170,7 @@ Concept-level notes accumulated while building the six projects in this portfoli
 
 ---
 
-## Day 3 — ONNX + Edge ML: Production Inference
+## ONNX + Edge ML: Production Inference
 
 ### ONNX Format
 - ONNX = Open Neural Network Exchange. Serializes computation graph + weights into a single portable file.
@@ -220,7 +220,7 @@ Concept-level notes accumulated while building the six projects in this portfoli
 
 ---
 
-## Day 4 — CoreML Conversion + Parity Validation
+## CoreML Conversion + Parity Validation
 
 ### CoreML & Why It Exists
 - CoreML is Apple's on-device inference format — optimized for their hardware stack: CPU, GPU, and the Apple Neural Engine (ANE).
@@ -298,7 +298,7 @@ Concept-level notes accumulated while building the six projects in this portfoli
 
 ---
 
-## Day 5 — CLIP Embeddings + Photo Clustering
+## CLIP Embeddings + Photo Clustering
 
 ### Embeddings
 - An embedding is a dense vector representing semantic content. Each dimension captures some learned feature — not hand-crafted, learned from training data.
@@ -384,7 +384,7 @@ Concept-level notes accumulated while building the six projects in this portfoli
 
 ---
 
-## Day 6 — Transfer Learning & Fine-Tuning MobileNet
+## Transfer Learning & Fine-Tuning MobileNet
 
 ### Transfer Learning — Core Idea
 - **Transfer learning reuses the learned *features*, not the learned *classes*.** A model pretrained on ImageNet (1.2M images, 1000 classes) has learned a general visual hierarchy. We keep that and relearn only the final mapping to our task.

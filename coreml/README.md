@@ -1,4 +1,4 @@
-# Day 4: CoreML conversion and parity validation
+# CoreML conversion and parity validation
 
 Converts a PyTorch model to Apple's on-device inference format and checks that the conversion is
 correct.
@@ -25,7 +25,7 @@ inference requires macOS, which is why ONNX is used as a parity proxy on non-App
 
 ```bash
 pip install -r requirements.txt
-jupyter notebook day4_coreml.ipynb
+jupyter notebook coreml.ipynb
 ```
 
 The `.mlpackage` and `.onnx` artifacts are not committed; running the notebook regenerates them.

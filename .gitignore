@@ -12,11 +12,13 @@ __pycache__/
 *.pt
 *.pth
 
-# auto-downloaded datasets (notebooks re-download). day2/data kept (own photo).
-day1-mlp-mnist/data/
-day5-photo-clustering/data/
-day6-finetune/data/
+# auto-downloaded datasets (notebooks re-download). resnet-features/data kept (own photo).
+mlp-mnist/data/
+photo-clustering/data/
+finetune/data/
+day6-finetune/
 
 # personal / local
 .claude/settings.local.json
 mle-study-plan.html
+day-mapping.md
