@@ -16,7 +16,7 @@ layers respond to.
 ## How to run
 
 ```bash
-pip install torch torchvision numpy matplotlib pillow
+pip install -r requirements.txt
 jupyter notebook day2_resnet_features.ipynb
 ```
 

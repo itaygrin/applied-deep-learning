@@ -15,7 +15,7 @@ training loop directly, without a high-level training wrapper.
 ## How to run
 
 ```bash
-pip install torch torchvision numpy matplotlib
+pip install -r requirements.txt
 jupyter notebook day1_mlp_mnist.ipynb
 ```
 

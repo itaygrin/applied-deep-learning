@@ -24,7 +24,7 @@ inference requires macOS, which is why ONNX is used as a parity proxy on non-App
 ## How to run
 
 ```bash
-pip install torch torchvision coremltools onnx numpy
+pip install -r requirements.txt
 jupyter notebook day4_coreml.ipynb
 ```
 

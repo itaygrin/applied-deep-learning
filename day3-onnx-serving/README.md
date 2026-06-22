@@ -15,7 +15,7 @@ Exports a PyTorch model to ONNX, serves it over HTTP with FastAPI, and measures 
 ## How to run
 
 ```bash
-pip install torch torchvision onnx onnxruntime fastapi uvicorn python-multipart pillow numpy matplotlib
+pip install -r requirements.txt
 
 # notebook (export + benchmark)
 jupyter notebook day3_onnx_serving.ipynb

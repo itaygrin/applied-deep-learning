@@ -17,8 +17,7 @@ and pets, with no labels.
 ## How to run
 
 ```bash
-pip install torch torchvision numpy matplotlib scikit-learn ftfy regex
-pip install git+https://github.com/openai/CLIP.git
+pip install -r requirements.txt
 jupyter notebook day5-clip-clustering.ipynb
 ```
 

@@ -19,7 +19,7 @@ comparing two transfer-learning strategies and measuring whether the more aggres
 ## How to run
 
 ```bash
-pip install torch torchvision numpy matplotlib scikit-learn
+pip install -r requirements.txt
 jupyter notebook day6-finetune.ipynb
 ```
 

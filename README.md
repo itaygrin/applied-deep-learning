@@ -61,24 +61,21 @@ A guide to the topics across the six projects:
 
 ## Getting started
 
+Each project is independent and has its own `requirements.txt`.
+
 ```bash
 # 1. create and activate a virtual environment
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
 
-# 2. install the core stack
-pip install torch torchvision numpy matplotlib scikit-learn
-
-# project-specific extras:
-#   day3:  pip install onnx onnxruntime fastapi uvicorn python-multipart pillow
-#   day4:  pip install coremltools onnx
-#   day5:  pip install git+https://github.com/openai/CLIP.git ftfy regex
-
-# 3. open any project notebook
+# 2. install one project's dependencies and open it
+cd day5-photo-clustering
+pip install -r requirements.txt
 jupyter notebook
 ```
 
-Each project folder has its own README with run instructions and output.
+Each project folder has its own README with run instructions and output. Note that day4 (CoreML)
+needs a Unix-based environment; see its README.
 
 ## Data and models
 
