@@ -1,0 +1,22 @@
+.venv/
+.venv-wsl/
+__pycache__/
+*.pyc
+*.pyo
+*.onnx
+*.mlmodel
+*.mlpackage
+.ipynb_checkpoints/
+
+# trained model artifacts — regenerate by running the notebooks
+*.pt
+*.pth
+
+# auto-downloaded datasets (notebooks re-download). day2/data kept (own photo).
+day1-mlp-mnist/data/
+day5-photo-clustering/data/
+day6-finetune/data/
+
+# personal / local
+.claude/settings.local.json
+mle-study-plan.html
