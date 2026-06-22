@@ -1,18 +1,17 @@
-# Day 2 — ResNet-18 Inference + Feature-Map Visualization
+# Day 2: ResNet-18 inference and feature-map visualization
 
-Inference-only exploration of a pretrained ResNet-18: classify an image, then look *inside* the
-network to see what its convolutional layers actually detect.
+Inference with a pretrained ResNet-18, then a look inside the network at what its convolutional
+layers respond to.
 
 ## What it does
 
-- Loads ResNet-18 with ImageNet-pretrained weights and the correct preprocessing contract
-  (`Resize(256) → CenterCrop(224)` + ImageNet normalization).
-- Runs classification on a sample image and reads off top-5 predictions.
-- Attaches a **forward hook** to an early conv layer to capture its feature maps, then visualizes
-  the individual filter activations — edges, color gradients, textures.
-- Explains the concepts: the input contract and why normalization mismatch is a silent bug,
-  `model.eval()` vs `torch.no_grad()`, BatchNorm train/inference behavior, and why hooks beat
-  surgically editing the model to grab intermediate outputs.
+- Loads ResNet-18 with ImageNet weights and the matching preprocessing (`Resize(256)`,
+  `CenterCrop(224)`, ImageNet normalization).
+- Runs classification on a sample image and reads the top-5 predictions.
+- Attaches a forward hook to an early convolutional layer to capture its feature maps, then plots
+  the individual filter activations.
+- Includes notes on the input contract and why a normalization mismatch is a silent bug,
+  `model.eval()` versus `torch.no_grad()`, and BatchNorm behavior at train versus inference time.
 
 ## How to run
 
@@ -21,10 +20,12 @@ pip install torch torchvision numpy matplotlib pillow
 jupyter notebook day2_resnet_features.ipynb
 ```
 
-A sample photo is included at `data/Amy.jpg`, so the notebook runs with no extra setup. The
-pretrained weights download automatically on first use.
+A sample photo is included at `data/Amy.jpg`, so the notebook runs without extra setup. The
+pretrained weights download on first use.
 
 ## Output
 
-Top-5 ImageNet predictions for the input image, plus a grid of early-layer feature maps showing
-which visual patterns each filter responds to. Visualizations are embedded inline in the notebook.
+The first 32 feature maps from ResNet-18's first layer. Different filters respond to different
+low-level patterns: edges, color gradients, and texture.
+
+![ResNet-18 layer 1 feature maps](feature_maps.png)

@@ -1,17 +1,16 @@
-# Day 3 — ONNX Export + FastAPI Serving + Latency Benchmark
+# Day 3: ONNX export, FastAPI serving, and latency benchmark
 
-Take a PyTorch model to production-style inference: export to ONNX, serve it over HTTP, and
-measure latency properly.
+Exports a PyTorch model to ONNX, serves it over HTTP with FastAPI, and measures latency.
 
 ## What it does
 
-- Exports ResNet-18 to **ONNX** with `torch.onnx.export` — dynamic batch axis, named I/O, and
-  `onnx.checker` validation.
-- Runs it under **ONNX Runtime** and benchmarks against PyTorch with proper methodology
-  (warm-up runs, `perf_counter`, mean + p95, latency *and* throughput).
-- Serves predictions through a **FastAPI** endpoint (`server.py`) that accepts image uploads.
-- Investigates **dynamic INT8 quantization** and explains the realistic finding: it barely helps
-  CNNs on CPU because ORT's CPU provider only quantizes `MatMul`/`Gemm`, not `Conv`.
+- Exports ResNet-18 to ONNX with `torch.onnx.export`, using a dynamic batch axis, named inputs and
+  outputs, and `onnx.checker` validation.
+- Runs it under ONNX Runtime and benchmarks against PyTorch with warm-up runs, `perf_counter`,
+  mean and p95, and both latency and throughput.
+- Serves predictions through a FastAPI endpoint (`server.py`) that accepts image uploads.
+- Benchmarks dynamic INT8 quantization and documents why it gives little benefit for CNNs on CPU:
+  ONNX Runtime's CPU provider only quantizes `MatMul` and `Gemm`, not `Conv`.
 
 ## How to run
 
@@ -23,14 +22,14 @@ jupyter notebook day3_onnx_serving.ipynb
 
 # serve (after the notebook has produced the .onnx file)
 uvicorn server:app --reload
-# then POST an image to the endpoint, or use the auto-generated docs at /docs
+# then POST an image to the endpoint, or use the docs at /docs
 ```
 
-> The `.onnx` files are not committed (regenerate by running the notebook).
+The `.onnx` files are not committed; running the notebook regenerates them.
 
 ## Output
 
-ONNX Runtime is **≈2× faster than PyTorch on CPU** (mean latency 97ms → 45ms for ResNet-18) —
-because ORT is inference-only and fuses ops (Conv+BN+ReLU) at load time. Benchmark:
+ONNX Runtime runs about 2x faster than PyTorch on CPU (mean latency 97 ms versus 45 ms for
+ResNet-18), because it is inference-only and fuses ops such as Conv, BatchNorm, and ReLU at load time.
 
-![Benchmark](benchmark.png)
+![Latency benchmark](benchmark.png)

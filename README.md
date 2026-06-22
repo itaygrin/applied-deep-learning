@@ -1,65 +1,49 @@
-# ML / Deep Learning Engineering Portfolio
+# Applied Deep Learning
 
-Six self-contained PyTorch projects spanning the full applied-ML lifecycle: **training a model
-from scratch, interpreting what it learned, optimizing it for production inference, deploying it
-to the edge, using it for embeddings/clustering, and fine-tuning it on a new task.** Each project
-is a single, heavily-annotated Jupyter notebook — built to be read, not just run.
+Six self-contained PyTorch projects, each a single Jupyter notebook. They cover training a model
+from scratch, interpreting a pretrained model, optimizing inference, deploying to the edge,
+clustering images with embeddings, and fine-tuning.
 
-> Every notebook explains the *why* before the code and prints tensor shapes at each step.
-> Concept-level write-ups for all six projects live in **[LEARN.md](LEARN.md)** — the engineering
-> deep-dives behind these projects.
+## Featured project: Photo clustering with CLIP and k-means
 
----
+[day5-photo-clustering](day5-photo-clustering/)
 
-## ⭐ Featured — Photo Clustering Pipeline (CLIP + k-means)
+Groups an unlabeled set of photos into semantically coherent albums such as beaches, food, people,
+and pets. Each image is encoded with CLIP (ViT-B/32) into a 512-dimensional embedding. The
+embeddings are L2-normalized so k-means clusters by cosine similarity, the cluster count k is
+chosen with the elbow method (using a PCA projection to 50 dimensions to get a usable signal in
+high-dimensional space), and the result is rendered as a per-cluster image grid and a 2D t-SNE map.
+The notebook also covers running this at scale: per-user clustering, FAISS, MiniBatchKMeans, and a
+distributed task queue.
 
-[**→ day5-photo-clustering/**](day5-photo-clustering/)
-
-The automatic album-generation problem: given a pile of photos, group them into semantically
-meaningful albums (beaches, food, people, pets) **with no labels**. The pipeline runs each image
-through **CLIP** to get 512-dim embeddings, L2-normalizes them, clusters with **k-means**, and
-visualizes the result as per-cluster image grids and a **t-SNE** projection.
-
-The interesting part is what it taught about *evaluation*: in 512-D space the elbow method is
-blinded by the curse of dimensionality (PCA-to-50D is needed to even see an elbow), and **dataset
-diversity matters as much as the algorithm** — a single-domain dataset (all food) produces no
-cluster gaps because the gaps don't exist in the data. The notebook also covers how this scales
-to millions of users (per-user clustering, FAISS, MiniBatchKMeans, distributed task queues).
-
----
+![CLIP and k-means cluster grid](day5-photo-clustering/clusters.png)
 
 ## Projects
 
-| # | Project | What it demonstrates |
-|---|---------|----------------------|
-| 1 | [day1-mlp-mnist](day1-mlp-mnist/) | An MLP built from scratch on MNIST — the full training loop (`zero_grad → forward → loss → backward → step`), Dropout, optimizers, error analysis. **98.1% test accuracy.** |
-| 2 | [day2-resnet-features](day2-resnet-features/) | ResNet-18 inference and **feature-map visualization** via forward hooks — seeing what early conv layers actually detect (edges, textures, color). |
-| 3 | [day3-onnx-serving](day3-onnx-serving/) | Export to **ONNX**, serve via **FastAPI**, and benchmark latency. ONNX Runtime ≈ **2× faster** than PyTorch on CPU (97ms → 45ms). Includes a realistic look at why dynamic INT8 quantization barely helps CNNs on CPU. |
-| 4 | [day4-coreml](day4-coreml/) | Convert PyTorch → **CoreML** (`.mlpackage`) via TorchScript, with **parity validation** (max-diff + `np.allclose`) to prove the converted model matches the original. |
-| 5 | [day5-photo-clustering](day5-photo-clustering/) | ⭐ The featured CLIP + k-means album-generation pipeline (above). |
-| 6 | [day6-finetune](day6-finetune/) | Transfer learning on MobileNetV2 — feature extraction vs. progressive unfreezing with **differential learning rates**. Key finding: **fine-tuning *regressed* vs. head-only** on this small near-ImageNet task — and knowing *why* is the lesson. |
+| # | Project | Description |
+|---|---------|-------------|
+| 1 | [day1-mlp-mnist](day1-mlp-mnist/) | An MLP built from scratch on MNIST: the full training loop, dropout, optimizers, and error analysis. Reaches 98.1% test accuracy. |
+| 2 | [day2-resnet-features](day2-resnet-features/) | ResNet-18 inference plus feature-map visualization through forward hooks, showing what the early convolutional layers respond to. |
+| 3 | [day3-onnx-serving](day3-onnx-serving/) | Export to ONNX, serve over FastAPI, and benchmark latency. ONNX Runtime runs about 2x faster than PyTorch on CPU (PyTorch 97 ms, ONNX Runtime 45 ms). Includes why dynamic INT8 quantization gives little benefit for CNNs on CPU. |
+| 4 | [day4-coreml](day4-coreml/) | Convert a PyTorch model to CoreML (`.mlpackage`) through TorchScript, with parity validation (max-diff and `np.allclose`) confirming the converted model matches the original. |
+| 5 | [day5-photo-clustering](day5-photo-clustering/) | CLIP embeddings plus k-means to group photos into albums with no labels. See the featured section above. |
+| 6 | [day6-finetune](day6-finetune/) | Transfer learning on MobileNetV2: feature extraction versus progressive unfreezing with differential learning rates. On this small, near-ImageNet task, feature extraction scored higher than fine-tuning (test macro-F1 0.9917 vs 0.9833). |
 
----
+## What's covered
 
-## Roadmap — the arc these projects cover
+A guide to the topics across the six projects:
 
-The projects are ordered as a deliberate progression through applied ML engineering:
-
-1. **Train** — build and train a network from scratch, understand the loop end-to-end *(day1)*
-2. **Interpret** — load a pretrained model, inspect intermediate activations *(day2)*
-3. **Optimize for inference** — export, serve, and benchmark for production *(day3)*
-4. **Deploy to the edge** — convert to a device-native format and validate parity *(day4)*
-5. **Embeddings & unsupervised ML** — represent images as vectors and cluster them at scale *(day5)*
-6. **Adapt** — fine-tune a pretrained model on a new task, and measure whether it actually helped *(day6)*
-
----
+- Training: building and training a network from scratch (day1)
+- Model interpretation: inspecting the intermediate activations of a pretrained model (day2)
+- Inference optimization: export, serving, and latency benchmarking (day3)
+- Edge deployment: converting to a device-native format with parity checks (day4)
+- Embeddings and clustering: representing images as vectors and grouping them, with notes on scaling (day5)
+- Fine-tuning: adapting a pretrained model and comparing it against feature extraction (day6)
 
 ## Tech stack
 
 `PyTorch` · `torchvision` · `ONNX` / `ONNX Runtime` · `coremltools` · `OpenAI CLIP` ·
 `scikit-learn` · `FastAPI` · `matplotlib` · `numpy`
-
----
 
 ## Repo structure
 
@@ -69,13 +53,11 @@ The projects are ordered as a deliberate progression through applied ML engineer
 ├── day2-resnet-features/   # ResNet-18 inference + feature-map viz
 ├── day3-onnx-serving/      # ONNX export + FastAPI + latency benchmark
 ├── day4-coreml/            # CoreML conversion + parity validation
-├── day5-photo-clustering/  # CLIP embeddings + k-means album generation  ⭐
+├── day5-photo-clustering/  # CLIP embeddings + k-means album generation
 ├── day6-finetune/          # MobileNet fine-tuning, augmentation, F1
-├── LEARN.md                # Engineering notes & concept deep-dives
+├── LEARN.md                # Concept notes for each project
 └── README.md
 ```
-
----
 
 ## Getting started
 
@@ -96,17 +78,19 @@ pip install torch torchvision numpy matplotlib scikit-learn
 jupyter notebook
 ```
 
-Each project's own README has run instructions and expected output.
+Each project folder has its own README with run instructions and output.
 
----
+## Data and models
 
-## A note on data & models
+To keep the repo small, datasets and trained model artifacts are not committed. They regenerate
+when you run the notebooks.
 
-To keep the repo lean, **datasets and trained model artifacts are not committed** — they
-regenerate when you run the notebooks:
+- Datasets (MNIST, Oxford-IIIT Pet, CLIP demo images) download automatically on first run. The
+  exception is `day2-resnet-features/data/Amy.jpg`, a sample photo committed so day 2 runs without
+  setup.
+- Model artifacts (`.pt`, `.pth`, `.onnx`, `.mlpackage`) are produced by running the notebooks.
+  Each notebook keeps its result cells (metrics, plots, visualizations) inline.
 
-- **Datasets** (MNIST, Oxford-IIIT Pet, CLIP demo images) **auto-download** on first run.
-  The one exception is `day2-resnet-features/data/Amy.jpg`, a sample photo included so day 2 runs
-  out of the box.
-- **Model artifacts** (`.pt`, `.pth`, `.onnx`, `.mlpackage`) are produced by running the notebooks.
-  Each notebook keeps its result cells (metrics, plots, visualizations) inline as proof of output.
+## Notes
+
+[LEARN.md](LEARN.md) collects the key concepts and design decisions behind each project.

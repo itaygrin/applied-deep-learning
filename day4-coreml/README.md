@@ -1,18 +1,19 @@
-# Day 4 — CoreML Conversion + Parity Validation
+# Day 4: CoreML conversion and parity validation
 
-Convert a PyTorch model to Apple's on-device inference format and prove the conversion is correct.
+Converts a PyTorch model to Apple's on-device inference format and checks that the conversion is
+correct.
 
 ## What it does
 
-- Traces ResNet-18 with `torch.jit.trace` (wrapped in `no_grad`, in `eval()` mode) to produce a
+- Traces ResNet-18 with `torch.jit.trace` (in `eval()` mode, wrapped in `no_grad`) to produce a
   TorchScript graph.
-- Converts it to **CoreML** (`.mlpackage`) with `coremltools`, baking ImageNet normalization into
-  the model via an `ImageType` input (`scale`/`bias`).
-- **Validates parity**: runs the same input through both models and compares logits with *both*
-  max-diff and `np.allclose` (atol + rtol) — each answers a different question.
-- Explains the production realities: `trace` vs `script`, why CoreML stores weights in float16 by
-  default (≈half the ONNX size), and that `coremltools` can *convert* on Linux but only *runs*
-  inference on macOS (so ONNX is used as a parity proxy on non-Apple hardware).
+- Converts it to CoreML (`.mlpackage`) with `coremltools`, baking ImageNet normalization into the
+  model through an `ImageType` input (`scale` and `bias`).
+- Validates parity by running the same input through both models and comparing logits with both
+  max-diff and `np.allclose` (absolute and relative tolerance), which answer different questions.
+- Includes notes on the production realities: `trace` versus `script`, why CoreML stores weights in
+  float16 by default (about half the ONNX size), and that `coremltools` can convert on Linux but only
+  runs inference on macOS, so ONNX is used as a parity proxy on non-Apple hardware.
 
 ## How to run
 
@@ -21,10 +22,10 @@ pip install torch torchvision coremltools onnx numpy
 jupyter notebook day4_coreml.ipynb
 ```
 
-> The `.mlpackage` / `.onnx` artifacts are not committed (regenerate by running the notebook).
+The `.mlpackage` and `.onnx` artifacts are not committed; running the notebook regenerates them.
 
 ## Output
 
-A `resnet18.mlpackage` whose logits match the source PyTorch model within numerical tolerance
-(parity check passes), at roughly half the on-disk size thanks to float16 weights. Conversion
-details and the parity report are inline in the notebook.
+A `resnet18.mlpackage` whose logits match the source PyTorch model within numerical tolerance (the
+parity check passes), at roughly half the on-disk size thanks to float16 weights. The parity report
+is printed inline in the notebook.

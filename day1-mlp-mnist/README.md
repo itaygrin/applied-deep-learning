@@ -1,16 +1,16 @@
-# Day 1 — MLP from Scratch on MNIST
+# Day 1: MLP from scratch on MNIST
 
-A multi-layer perceptron trained on MNIST handwritten digits, built to exercise the full PyTorch
-training loop end-to-end — no high-level training wrappers.
+A multi-layer perceptron trained on MNIST handwritten digits, implementing the full PyTorch
+training loop directly, without a high-level training wrapper.
 
 ## What it does
 
-- Loads MNIST via `torchvision`, normalizes with the dataset's mean/std, and batches with a `DataLoader`.
-- Defines an MLP (`Flatten → Linear → ReLU → Dropout → Linear`) as an `nn.Module`.
-- Trains with the explicit 5-step loop: `zero_grad → forward → loss → backward → step`.
-- Runs error analysis on misclassified digits and saves the trained weights (`state_dict`).
-- Covers the *why* behind each piece: logits vs. softmax, `model.train()` vs `model.eval()`,
-  why `zero_grad` comes first, and how the common optimizers (SGD, momentum, Adam, AdamW) differ.
+- Loads MNIST with `torchvision`, normalizes with the dataset mean and std, and batches with a `DataLoader`.
+- Defines an MLP (`Flatten`, `Linear`, `ReLU`, `Dropout`, `Linear`) as an `nn.Module`.
+- Trains with the explicit loop: zero the gradients, forward pass, compute loss, backward pass, optimizer step.
+- Runs error analysis on misclassified digits and saves the trained weights with `state_dict`.
+- Includes notes on logits versus softmax, `model.train()` versus `model.eval()`, why gradients are
+  zeroed first, and how SGD, momentum, Adam, and AdamW differ.
 
 ## How to run
 
@@ -19,11 +19,11 @@ pip install torch torchvision numpy matplotlib
 jupyter notebook day1_mlp_mnist.ipynb
 ```
 
-MNIST auto-downloads to `data/` on first run.
+MNIST downloads to `data/` on first run.
 
 ## Output
 
-**98.1% test accuracy** after 5 epochs on CPU (~5 minutes), loss dropping every epoch with no
-overfitting. Training curves:
+98.1% test accuracy after 5 epochs on CPU (about 5 minutes), with loss dropping every epoch and no
+overfitting.
 
 ![Training curves](training_curves.png)
