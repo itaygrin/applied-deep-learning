@@ -25,9 +25,9 @@ Demo images download on first run.
 
 ## Output
 
-Each row of the grid is one k-means cluster over the CLIP embeddings.
+**CLIP + k-means clusters on the tiny-imagenet dataset.** Each row of the grid is one cluster.
 
-![CLIP and k-means cluster grid](clusters.jpg)
+![k-means clusters over CLIP embeddings on tiny-imagenet](clusters.jpg)
 
 The elbow plot is used to choose k. Inertia falls smoothly, so a clear elbow needs the PCA step
 described above.
