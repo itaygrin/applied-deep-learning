@@ -27,17 +27,17 @@ Demo images download on first run.
 
 **CLIP + k-means clusters on the tiny-imagenet dataset.** Each row of the grid is one cluster.
 
-![k-means clusters over CLIP embeddings on tiny-imagenet](clusters.jpg)
+<img src="clusters.jpg" alt="k-means clusters over CLIP embeddings on tiny-imagenet" width="380">
 
 The elbow plot is used to choose k. Inertia falls smoothly, so a clear elbow needs the PCA step
 described above.
 
-![Elbow method](elbow.png)
+<img src="elbow.png" alt="Elbow method" width="560">
 
 t-SNE projects the 512-dimensional embeddings to 2D, colored by cluster, as a visual check that the
 clusters are separated.
 
-![t-SNE of CLIP embeddings](tsne.png)
+<img src="tsne.png" alt="t-SNE of CLIP embeddings" width="520">
 
 Dataset diversity matters as much as the algorithm: a single-domain set produces no cluster gaps
 because the gaps do not exist in the data, while a set spanning several domains separates cleanly.
